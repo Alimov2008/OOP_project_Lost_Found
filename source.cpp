@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <sstream>
 #include <random>
 
 
@@ -11,22 +12,22 @@ using namespace std;
 
 template <typename T>
 T datatype_checker(const string& prompt){
+    string line;
     T value; 
     while (true)
     {
         cout<<prompt;
-        cin>>value;
-        if (cin.fail()){
-            cout<<"Invalid datatype input, Please tyr again\n";
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        getline(cin,line);
+        stringstream ss(line);
+
+        if (ss>>value)
+        {
+            char leftover;
+            if (ss>>leftover){cout<<"Invalid input, please enter only numbers\n";}
+            else{return value;}     
         }
-        else{
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            return value;
-        }
+        else{cout<<"invalid input, pleare try again\n";}
     }
-    
 }
 
 
