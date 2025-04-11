@@ -21,8 +21,6 @@ void info_getter(){
 
     cout<<"Input following information: "<<endl;
 
-    try
-    {
     cout<<"Item name: ";
     cin>>name;
     cout<<""<<endl;
@@ -49,11 +47,7 @@ void info_getter(){
     
     cout<<"\nContuct number: ";
     cin>>contuct_number;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    
     
 }
 
