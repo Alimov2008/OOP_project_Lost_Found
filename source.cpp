@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <limits>
 #include <random>
 
 
@@ -8,6 +8,27 @@
 
 
 using namespace std;
+
+template <typename T>
+T datatype_checker(const string& prompt){
+    T value; 
+    while (true)
+    {
+        cout<<prompt;
+        cin>>value;
+        if (cin.fail()){
+            cout<<"Invalid datatype input, Please tyr again\n";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        }
+        else{
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            return value;
+        }
+    }
+    
+}
+
 
 void info_getter(Item& _item){
 
@@ -24,7 +45,8 @@ void info_getter(Item& _item){
     cout<<"Input following information: "<<endl;
 
     cout<<"Item name: ";
-    cin>>name;
+    cin.ignore();
+    getline(cin, name);
     cout<<""<<endl;
 
     cout<<"Item description: ";
@@ -33,22 +55,15 @@ void info_getter(Item& _item){
     cout<<""<<endl;
 
     cout<<"--Date--"<<endl;
-    cout<<"Year: ";
-    cin>>year;
-    cout<<""<<endl;
-    cout<<"Month: ";
-    cin>>month;
-    cout<<""<<endl;
-    cout<<"Day: ";
-    cin>>day;
-    cout<<""<<endl;
+    year=datatype_checker<int>("Year: ");
+    month=datatype_checker<int>("Month: ");
+    day=datatype_checker<int>("Day: ");
 
     cout<<"Location: ";
     cin.ignore();
     getline(cin, location);
     
-    cout<<"\nContuct number: ";
-    cin>>contuct_number;
+    contuct_number=datatype_checker<long int>("Your Contuct: ");
 
     // Item i1;
     // i1.setID(1);
