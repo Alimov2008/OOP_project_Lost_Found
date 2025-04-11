@@ -20,7 +20,10 @@ public:
         ID=0;
         name="Unknown";
         description="Unknown";
-      
+            //time
+            year=0;
+            month=0;
+            day=0;
         location="Unknown";
         contuct_number=0;
     }
@@ -48,15 +51,32 @@ public:
     }
     //Time
         void setYear(int __year){
-            year=__year;
+            if (__year>0){
+                year=__year;
+            }
+            else{
+                cout<<"JESUS";
+            }
+            
         }
 
         void setMonth(int __month){
-            month=__month;
+            if (__month>0 && __month<12){
+                month=__month;
+            }
+            else{
+                cout<<"month cannot be more than 12 or less than 1";
+            }
         }
 
         void setDay(int __day){
-            day=__day;
+            if (__day>0 && __day<31){
+                day=__day;
+            }
+            else{
+                cout<<"there are no less than 1 and no more than 31 days in a  month";
+            }
+            
         }
 
     void setLocation(string __location){
@@ -67,16 +87,15 @@ public:
         contuct_number=__con_number;
     }
 
-    void Display(){
-        cout<<"\nID: "<<ID<<endl;
-        cout<<"Name: "<<name<<endl;
-        cout<<"Description: "<<description<<endl;
-        cout<<"Time: "<<day<<"/"<<month<<"/"<<year<<endl;
-        cout<<"Location: "<<location<<endl;
-        cout<<"Contuct number: "<<contuct_number<<endl;
-    }
+    // void Display(){
+    //     cout<<"\nID: "<<ID<<endl;
+    //     cout<<"Name: "<<name<<endl;
+    //     cout<<"Description: "<<description<<endl;
+    //     cout<<"Time: "<<day<<"/"<<month<<"/"<<year<<endl;
+    //     cout<<"Location: "<<location<<endl;
+    //     cout<<"Contuct number: "<<contuct_number<<endl;
+    // }
     
     
 };
-
 

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <random>
+
 
 #include "Item.cpp"
 
@@ -47,6 +49,16 @@ void info_getter(){
     
     cout<<"\nContuct number: ";
     cin>>contuct_number;
+
+    Item i1;
+    i1.setID(1);
+    i1.setName(name);
+    i1.setDescription(description);
+    i1.setYear(year);
+    i1.setMonth(month);
+    i1.setDay(day);
+    i1.setLocation(location);
+    i1.setContuct_number(contuct_number);
     
     
 }
