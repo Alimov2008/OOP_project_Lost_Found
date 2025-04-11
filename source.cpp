@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void info_getter(){
+void info_getter(Item& _item){
 
     int ID;
     string name;
@@ -50,22 +50,24 @@ void info_getter(){
     cout<<"\nContuct number: ";
     cin>>contuct_number;
 
-    Item i1;
-    i1.setID(1);
-    i1.setName(name);
-    i1.setDescription(description);
-    i1.setYear(year);
-    i1.setMonth(month);
-    i1.setDay(day);
-    i1.setLocation(location);
-    i1.setContuct_number(contuct_number);
+    // Item i1;
+    // i1.setID(1);
+    // i1.setName(name);
+    // i1.setDescription(description);
+    // i1.setYear(year);
+    // i1.setMonth(month);
+    // i1.setDay(day);
+    // i1.setLocation(location);
+    // i1.setContuct_number(contuct_number);
     
+    _item.setData(123,name,description,year,month,day,location,contuct_number);
     
 }
 
 int main()
 {   
-    
+    Item i1;
+
     int option;
 
     cout<<"---Lost & Found---"<<endl;
@@ -83,7 +85,7 @@ int main()
     {
     case 1:
     cout<<"1"<<endl;
-    info_getter();
+    info_getter(i1);
         break;
     
     case 2:
