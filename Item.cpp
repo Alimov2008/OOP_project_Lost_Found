@@ -18,8 +18,8 @@ private:
 public:
     Item(){
         ID=0;
-        name="Unknown";
-        description="Unknown";
+        name="Unknown item";
+        description="Unknown item";
             //time
             year=0;
             month=0;
