@@ -105,7 +105,7 @@ public:
         cout<<"\nID: "<<ID<<endl;
         cout<<"Name: "<<name<<endl;
         cout<<"Description: "<<description<<endl;
-        cout<<"Time: "<<day<<"/"<<month<<"/"<<year<<endl;
+        // cout<<"Time: "<<day<<"/"<<month<<"/"<<year<<endl;
         cout<<"Location: "<<location<<endl;
         cout<<"Contuct number: "<<contuct_number<<endl;
     }
