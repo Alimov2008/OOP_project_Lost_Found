@@ -4,9 +4,7 @@
 #include <sstream>
 #include <random>
 
-
 #include "Item.cpp"
-
 
 using namespace std;
 
@@ -35,7 +33,8 @@ T datatype_checker(const string& prompt){
 
 
 void info_getter(Item& _item){
-    bool i=true;
+    srand(time(NULL));
+    
 
     int ID;
     string name;
@@ -51,6 +50,7 @@ void info_getter(Item& _item){
     int temp_month;
     int temp_day;
 
+    ID=(rand()%1000000);
     cout<<"Input following information: "<<endl;
 
     cout<<"Item name: ";
@@ -59,7 +59,7 @@ void info_getter(Item& _item){
     cout<<""<<endl;
 
     cout<<"Item description: ";
-    cin.ignore();
+    // cin.ignore();
     getline(cin, description);
     cout<<""<<endl;
 
@@ -97,7 +97,7 @@ void info_getter(Item& _item){
             break;
         }
         else{
-            cout<<"Day must be more than 0 and less than 31, try again\n";
+            cout<<"Day must be more than 0 and less than 31, try again"<<endl;
         }
     }
 
@@ -117,7 +117,7 @@ void info_getter(Item& _item){
     // i1.setLocation(location);
     // i1.setContuct_number(contuct_number);
     
-    _item.setData(123,name,description,year,month,day,location,contuct_number);
+    _item.setData(ID,name,description,year,month,day,location,contuct_number);
     
 }
 

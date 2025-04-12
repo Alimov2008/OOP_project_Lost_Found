@@ -112,7 +112,8 @@ public:
         this->day=it.day;
         this->location=it.location;
         this->contuct_number=it.contuct_number;
-        }
+        return 0;
+    }
 
 
     void Display(){
