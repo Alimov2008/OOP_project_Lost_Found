@@ -97,12 +97,12 @@ void info_getter(Item& _item){
             break;
         }
         else{
-            cout<<"Day must be more than 0 and less than 31, try again"<<endl;
+            cout<<"Day must be more than 0 and less than 31, try again";
         }
     }
 
     cout<<"Location: ";
-    cin.ignore();
+    // cin.ignore();
     getline(cin, location);
     
     contuct_number=datatype_checker<long int>("Your Contuct: ");

@@ -112,7 +112,6 @@ public:
         this->day=it.day;
         this->location=it.location;
         this->contuct_number=it.contuct_number;
-        return 0;
     }
 
 
@@ -128,8 +127,14 @@ public:
     ofstream lost_db;
     void Lost_database_info_saving(){
         lost_db.open("lost_database.csv",ios::app);
-        lost_db<<ID<<","<<name<<","<<description<<","<<year<<","<<month<<","<<day<<","<<location<<","<<contuct_number<<endl;
-        lost_db.close();
+        lost_db << ID << ","
+        << "\"" << name << "\"" << ","
+        << "\"" << description << "\"" << ","
+        << year << ","
+        << month << ","
+        << day << ","
+        << "\"" << location << "\"" << ","
+        << contuct_number << endl;
     }
 
 };
