@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <fstream>
 
 using namespace std;
 
 class Item
 {
-private:
+protected:
     int ID;
     string name;
     string description;
@@ -101,6 +103,18 @@ public:
     //     contuct_number=__con_number;
     // }
 
+    bool operator=(const Item &it){
+        this->ID=it.ID;
+        this->name=it.name;
+        this->description=it.description;
+        this->year=it.year;
+        this->month=it.month;
+        this->day=it.day;
+        this->location=it.location;
+        this->contuct_number=it.contuct_number;
+        }
+
+
     void Display(){
         cout<<"\nID: "<<ID<<endl;
         cout<<"Name: "<<name<<endl;
@@ -110,6 +124,12 @@ public:
         cout<<"Contuct number: "<<contuct_number<<endl;
     }
     
-    
+    ofstream lost_db;
+    void Lost_database_info_saving(){
+        lost_db.open("lost_database.csv",ios::app);
+        lost_db<<ID<<","<<name<<","<<description<<","<<year<<","<<month<<","<<day<<","<<location<<","<<contuct_number<<endl;
+        lost_db.close();
+    }
+
 };
 

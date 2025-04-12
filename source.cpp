@@ -144,6 +144,7 @@ int main()
     cout<<"1"<<endl;
     info_getter(i1);
     i1.Display();
+    i1.Lost_database_info_saving();
         break;
     
     case 2:

@@ -6,9 +6,19 @@
 
 using namespace std;
 
-void Lost_database(int _ID,string _name,string _description,int _year,int _month,int _day,string _location,int _contuct_number)
-{   
-    ofstream Lost_data;
-    Lost_data.open("lost_database.csv");
-    Lost_data<<_ID<<","<<_name<<","<<_description<<","<<_year<<","<<_month<<","<<_day<<","<<_location<<","<<_contuct_number<<endl;
-}
+class Lost_database:public Item
+{
+    public:
+    Lost_database(int ID,string name,string description,int year,int month,int day,string location,int contuct_number):
+    Item(ID,name,description,year,month,day,location,contuct_number){}
+
+    ofstream L_database;
+    
+
+    void data_input(){
+        L_database.open("lost_database.csv");
+        L_database<<ID<<",";
+    }
+    
+};
+
