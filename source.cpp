@@ -126,47 +126,46 @@ int main()
     Item i1;
 
     int option;
-
+    
+    cout<<"---Lost & Found---"<<endl;
+    cout<<"___________________________"<<endl;
+    cout<<"Report lost item (1)"<<endl;
+    cout<<"Register found item (2)"<<endl;
+    cout<<"Lost item list (3)"<<endl;
+    cout<<"Found item list (4)"<<endl;
+    cout<<"Exit (5)"<<endl;
+    cout<<"___________________________"<<endl;
+    cout<<"Choose option: ";
+    cin>>option;
+    
+    switch (option)
+    {
+    case 1:
+    cout<<"1"<<endl;
     info_getter(i1);
-    // cout<<"---Lost & Found---"<<endl;
-    // cout<<"___________________________"<<endl;
-    // cout<<"Report lost item (1)"<<endl;
-    // cout<<"Register found item (2)"<<endl;
-    // cout<<"Lost item list (3)"<<endl;
-    // cout<<"Found item list (4)"<<endl;
-    // cout<<"Exit (5)"<<endl;
-    // cout<<"___________________________"<<endl;
-    // cout<<"Choose option: ";
-    // cin>>option;
+    i1.Display();
+        break;
     
-    // switch (option)
-    // {
-    // case 1:
-    // cout<<"1"<<endl;
-    // info_getter(i1);
-    // i1.Display();
-    //     break;
-    
-    // case 2:
-    // cout<<"2"<<endl;
-    //     break;
+    case 2:
+    cout<<"2"<<endl;
+        break;
 
-    // case 3:
-    // cout<<"3"<<endl;
-    //     break;
+    case 3:
+    cout<<"3"<<endl;
+        break;
 
-    // case 4:
-    //     cout<<"4"<<endl;
-    //     break;
+    case 4:
+        cout<<"4"<<endl;
+        break;
 
-    // case 5:
-    //     cout<<"5"<<endl;
-    //     break;
+    case 5:
+        cout<<"5"<<endl;
+        break;
 
-    // default:
-    //     cout<<"Invalid user input, Please try again"<<endl;
-    //     break;
-    // }
+    default:
+        cout<<"Invalid user input, Please try again"<<endl;
+        break;
+    }
 
     return 0;
 }
