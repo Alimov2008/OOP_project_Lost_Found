@@ -2,6 +2,9 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <vector>
+
+#include "myfunshare.h"
 
 using namespace std;
 
@@ -17,6 +20,7 @@ protected:
       int day;
     string location;
     long int contuct_number;
+    // bool W=true;
 public:
     Item(){
         ID=0;
@@ -74,8 +78,6 @@ public:
     //             cout<<"JESUS";
     //         }
             
-    //     }
-
     //     void setMonth(int __month){
     //         if (__month>0 && __month<12){
     //             month=__month;
@@ -93,8 +95,6 @@ public:
     //             cout<<"there are no less than 1 and no more than 31 days in a  month";
     //         }
             
-    //     }
-
     // void setLocation(string __location){
     //     location=__location;
     // }
@@ -116,10 +116,11 @@ public:
 
 
     void Display(){
+        cout<<"Info Provided: ";
         cout<<"\nID: "<<ID<<endl;
         cout<<"Name: "<<name<<endl;
         cout<<"Description: "<<description<<endl;
-        // cout<<"Time: "<<day<<"/"<<month<<"/"<<year<<endl;
+        cout<<"Time: "<<day<<"/"<<month<<"/"<<year<<endl;
         cout<<"Location: "<<location<<endl;
         cout<<"Contuct number: "<<contuct_number<<endl;
     }
@@ -135,7 +136,80 @@ public:
         << day << ","
         << "\"" << location << "\"" << ","
         << contuct_number << endl;
+        lost_db.close();
     }
+
+    void delete_database_item(const string& targetID){
+        ifstream inputFile("lost_database.csv");
+        ofstream tempFile("temp.csv");
+        string temp_line;
+        bool found=false;
+
+        while (getline(inputFile,temp_line))
+        {
+            stringstream ss(temp_line);
+            string temp_ID;
+            getline(ss, temp_ID,',');
+            if (temp_ID==targetID)
+            {
+                found=true;
+            }
+            else{
+                tempFile<<temp_line<<"\n";
+            }
+            
+        }
+
+        inputFile.close();
+        tempFile.close();
+
+        remove("lost_database.csv");
+        rename("temp.csv","lost_database.csv");
+
+        if (found){
+        cout<<"Item with ID "<<targetID<<" has been deleted from database";
+        }
+        else{
+        cout<<"No item with such ID exists in database";
+        } 
+        
+    }
+    
+    void Lost_database_list(){
+        ifstream lost_list;
+        string row;
+        int option;
+        int Target_ID;
+        lost_list.open("lost_database.csv");
+        while (true)
+        {
+            while (getline(lost_list,row)){
+            cout<<row<<endl;
+            }
+            cout<<"Enter 1 to delete item"<<endl;
+            cout<<"Enter 2 to exit"<<endl;
+            option=datatype_checker<int>("Enter option: ");
+            if (option==1)
+            {
+                Target_ID=datatype_checker<int>("Enter ID of item you want to delete: ");
+                delete_database_item(to_string(Target_ID));
+                break;
+            }
+            else if (option==2)
+            {
+                cout<<"Exiting to main menu..."<<endl;
+            }
+            else{
+                cout<<"No such option, Please try again"<<endl;
+            }
+            
+        }
+        lost_list.close();
+
+    }
+
+
+
 
 };
 

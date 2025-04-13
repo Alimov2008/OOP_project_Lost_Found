@@ -4,6 +4,7 @@
 #include <sstream>
 #include <random>
 
+#include "myfunshare.h"
 #include "Item.cpp"
 
 using namespace std;
@@ -50,7 +51,7 @@ void info_getter(Item& _item){
     int temp_month;
     int temp_day;
 
-    ID=(rand()%1000000);
+    ID=(rand()%1000);
     cout<<"Input following information: "<<endl;
 
     cout<<"Item name: ";
@@ -129,7 +130,7 @@ int main()
     
    while(W){
 
-        cout<<"---Lost & Found---"<<endl;
+        cout<<"\n---Lost & Found---"<<endl;
         cout<<"___________________________"<<endl;
         cout<<"Report lost item (1)"<<endl;
         cout<<"Register found item (2)"<<endl;
@@ -143,10 +144,10 @@ int main()
         switch (option)
         {
         case 1:
-        cout<<"Choosed option: Report item loss"<<endl;
-        info_getter(i1);
-        i1.Display();
-        i1.Lost_database_info_saving();
+            cout<<"Choosed option: Report item loss"<<endl;
+            info_getter(i1);
+            // i1.Display();
+            i1.Lost_database_info_saving();
             break;
         
         case 2:
@@ -154,7 +155,8 @@ int main()
             break;
 
         case 3:
-        cout<<"3"<<endl;
+            cout<<"3"<<endl;
+            i1.Lost_database_list();
             break;
 
         case 4:
