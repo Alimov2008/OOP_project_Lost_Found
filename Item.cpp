@@ -175,37 +175,36 @@ public:
         
     }
     
-    void Lost_database_list(){
+    void Lost_database_list() {
         ifstream lost_list;
         string row;
         int option;
         int Target_ID;
-        lost_list.open("lost_database.csv");
-        while (true)
-        {
-            while (getline(lost_list,row)){
-            cout<<row<<endl;
+    
+        while (true) {
+            lost_list.open("lost_database.csv");
+    
+            while (getline(lost_list, row)) {
+                cout << row << endl;
             }
-            cout<<"Enter 1 to delete item"<<endl;
-            cout<<"Enter 2 to exit"<<endl;
-            option=datatype_checker<int>("Enter option: ");
-            if (option==1)
-            {
-                Target_ID=datatype_checker<int>("Enter ID of item you want to delete: ");
-                delete_database_item(to_string(Target_ID));
-                break;
-            }
-            else if (option==2)
-            {
-                cout<<"Exiting to main menu..."<<endl;
-            }
-            else{
-                cout<<"No such option, Please try again"<<endl;
-            }
+            lost_list.close(); 
+    
+            cout << "Enter 1 to delete item" << endl;
+            cout << "Enter 2 to exit" << endl;
             
+            option = datatype_checker<int>("Enter option: ");
+    
+            if (option == 1) {
+                Target_ID = datatype_checker<int>("Enter ID of item you want to delete: ");
+                delete_database_item(to_string(Target_ID));
+                break; 
+            } else if (option == 2) {
+                cout << "Exiting to main menu..." << endl;
+                break;
+            } else {
+                cout << "No such option, Please try again\n\n" << endl;
+            }
         }
-        lost_list.close();
-
     }
 
 
