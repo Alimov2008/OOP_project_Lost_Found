@@ -221,7 +221,7 @@ public:
         rename("temp.csv","found_database.csv");
 
         if (found){
-        cout<<"\n----Item with ID "<<targetID<<" has been deleted from database----"<<endl;
+        cout<<"\n----Item with ID "<<targetID<<" has been deleted/claimed from database----"<<endl;
         }
         else{
         cout<<"No item with such ID exists in database";
@@ -280,13 +280,12 @@ public:
         file.close();
 
         cout << "Enter 1 to delete item" << endl;
-        cout << "Enter 2 to claim item" << endl;
-        cout << "Enter 3 to exit" << endl;
+        cout << "Enter 2 to exit" << endl;
         
         option = datatype_checker<int>("Enter option: ");
 
-        if (option==1||option==2) {
-            Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
+        if (option==1) {
+            Target_ID = datatype_checker<int>("Enter ID of item you want to delete: ");
             delete_lost_database_item(to_string(Target_ID));
             // break; 
         } else if (option == 3) {
@@ -344,16 +343,17 @@ public:
             }
             file.close();
 
-            cout << "Enter 1 to delete item" << endl;
-            cout << "Enter 2 to exit" << endl;
+            cout<<"Enter 1 to delete item" << endl;
+            cout<<"Enter 2 to claim item"<<endl;
+            cout<<"Enter 3 to exit" << endl;
             
             option = datatype_checker<int>("Enter option: ");
     
-            if (option == 1) {
-                Target_ID = datatype_checker<int>("Enter ID of item you want to delete: ");
+            if (option == 1||option==2) {
+                Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
                 delete_found_database_item(to_string(Target_ID));
                 // break; 
-            } else if (option == 2) {
+            } else if (option == 3) {
                 cout << "Exiting to main menu..." << endl;
                 // break;
             } else {
