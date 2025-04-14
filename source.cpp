@@ -149,24 +149,25 @@ int main()
             cout<<"Choosen option: Report item loss"<<endl;
             info_getter(i1);
             // i1.Display();
+            cout<<"-----Lost item info has been saved-----"<<endl;
             i1.Lost_database_info_saving();
             break;
         
         case 2:
             cout<<"Choosen option: Register found item"<<endl;
-            cout<<"This feature is currently under construction"<<endl;
-            cout<<"Please return later"<<endl;
+            info_getter(i1);
+            // i1.Display();
+            cout<<"-----Lost item info has been saved-----"<<endl;
+            i1.Found_database_info_saving();
             break;
 
         case 3:
             cout<<"Choosen option: Lost item list"<<endl;
             i1.Lost_database_list();
             break;
-
         case 4:
             cout<<"Choosen option: Found item list"<<endl;
-            cout<<"This feature is currently under construction"<<endl;
-            cout<<"Please return later"<<endl;
+            i1.Found_database_list();
             break;
 
         case 5:
