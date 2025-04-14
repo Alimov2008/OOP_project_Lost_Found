@@ -177,7 +177,6 @@ public:
         
     }
     
-
     void Lost_database_list() {
         ifstream file("lost_database.csv");
         string line;
@@ -188,29 +187,24 @@ public:
             cout << "Could not open lost_database.csv\n";
             return;
         }
-    
-        // Print header
-        cout << left
-             << setw(8)  << "ID"
-             << setw(15) << "Name"
-             << setw(25) << "Description"
-             << setw(6)  << "Year"
-             << setw(8)  << "Month"
-             << setw(6)  << "Day"
-             << setw(15) << "Location"
-             << setw(15) << "Contact" << endl;
-    
-        // Print separator line
-        cout << string(102, '-') << endl;
-    
-        // Print each row in formatted table
+        
+        cout<<left
+            <<setw(8)<<"ID"
+            <<setw(15)<<"Name"
+            <<setw(25)<<"Description"
+            <<setw(6)<<"Year"
+            <<setw(8)<<"Month"
+            <<setw(6)<<"Day"
+            <<setw(15)<<"Location"
+            <<setw(15)<<"Contact"<<endl;
+        cout<<string(102, '-')<<endl;
+
         while (getline(file, line)) {
             stringstream ss(line);
             string field;
             vector<string> fields;
     
             while (getline(ss, field, ',')) {
-                // Remove quotes if present
                 if (!field.empty() && field.front() == '"' && field.back() == '"') {
                     field = field.substr(1, field.size() - 2);
                 }
@@ -218,15 +212,15 @@ public:
             }
     
             if (fields.size() == 8) {
-                cout << left
-                     << setw(8)  << fields[0]
-                     << setw(15) << fields[1]
-                     << setw(25) << fields[2]
-                     << setw(6)  << fields[3]
-                     << setw(8)  << fields[4]
-                     << setw(6)  << fields[5]
-                     << setw(15) << fields[6]
-                     << setw(15) << fields[7] << endl;
+                cout<<left
+                    <<setw(8)<<fields[0]
+                    <<setw(15)<<fields[1]
+                    <<setw(25)<<fields[2]
+                    <<setw(6)<<fields[3]
+                    <<setw(8)<<fields[4]
+                    <<setw(6)<<fields[5]
+                    <<setw(15)<<fields[6]
+                    <<setw(15)<<fields[7]<<endl;
             }
         }
     
@@ -249,8 +243,69 @@ public:
         }
     }
 
+    void Found_database_list(){
+        ifstream file("found_database.csv");
+        string line;
+        int option;
+        int Target_ID;
     
+        if (!file.is_open()) {
+            cout << "Could not open found_database.csv\n";
+            return;
+        }
+    
+        cout << left
+             << setw(8)  << "ID"
+             << setw(15) << "Name"
+             << setw(25) << "Description"
+             << setw(6)  << "Year"
+             << setw(8)  << "Month"
+             << setw(6)  << "Day"
+             << setw(15) << "Location"
+             << setw(15) << "Contact" << endl;
+        cout << string(102, '-') << endl;
 
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string field;
+            vector<string> fields;
+    
+            while (getline(ss, field, ',')) {
+                if (!field.empty() && field.front() == '"' && field.back() == '"') {
+                    field = field.substr(1, field.size() - 2);
+                }
+                fields.push_back(field);
+            }
+    
+            if (fields.size() == 8) {
+                cout << left
+                    <<setw(8) <<fields[0]
+                    <<setw(15)<<fields[1]
+                    <<setw(25)<<fields[2]
+                    <<setw(6) <<fields[3]
+                    <<setw(8) <<fields[4]
+                    <<setw(6) <<fields[5]
+                    <<setw(15)<<fields[6]
+                    <<setw(15)<<fields[7] << endl;
+            }
+            file.close();
+
+            cout << "Enter 1 to delete item" << endl;
+            cout << "Enter 2 to exit" << endl;
+            
+            option = datatype_checker<int>("Enter option: ");
+    
+            if (option == 1) {
+                Target_ID = datatype_checker<int>("Enter ID of item you want to delete: ");
+                delete_database_item(to_string(Target_ID));
+                // break; 
+            } else if (option == 2) {
+                cout << "Exiting to main menu..." << endl;
+                // break;
+            } else {
+                cout << "No such option, Please try again\n\n" << endl;
+            }
+        }
+    };
 
 };
-

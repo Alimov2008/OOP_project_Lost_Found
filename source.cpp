@@ -25,10 +25,10 @@ T datatype_checker(const string& prompt){
         if (ss>>value)
         {
             char leftover;
-            if (ss>>leftover){cout<<"Invalid input, please enter only numbers\n";}
+            if (ss>>leftover){cout<<"Invalid input, enter only numbers\n";}
             else{return value;}     
         }
-        else{cout<<"invalid input, pleare try again\n";}
+        else{cout<<"invalid input, try again\n";}
     }
 }
 
@@ -75,7 +75,7 @@ void info_getter(Item& _item){
             break;
         }
         else{
-            cout<<"Year must be more than 0, try again\n";
+            cout<<"Year must be more than 0, try again"<<endl;
         }
     }
     
@@ -87,7 +87,7 @@ void info_getter(Item& _item){
             break;
         }
         else{
-            cout<<"Month must be more than 0 and less than 12, try again\n";
+            cout<<"Month must be more than 0 and less than 12, try again"<<endl;
         }
     }
     
@@ -99,7 +99,7 @@ void info_getter(Item& _item){
             break;
         }
         else{
-            cout<<"Day must be more than 0 and less than 31, try again";
+            cout<<"Day must be more than 0 and less than 31, try again"<<endl;
         }
     }
 
