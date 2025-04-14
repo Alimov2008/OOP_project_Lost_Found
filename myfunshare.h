@@ -1,5 +1,6 @@
-#include <string>
 #include <iostream>
+#include <string>
+#include <sstream>
 using namespace std;
 
 template <typename T>

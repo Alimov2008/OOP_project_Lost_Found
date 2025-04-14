@@ -3,6 +3,7 @@
 #include <limits>
 #include <sstream>
 #include <random>
+#include <fstream>
 
 #include "myfunshare.h"
 #include "Item.cpp"
@@ -36,7 +37,6 @@ T datatype_checker(const string& prompt){
 void info_getter(Item& _item){
     srand(time(NULL));
     
-
     int ID;
     string name;
     string description;
@@ -52,7 +52,8 @@ void info_getter(Item& _item){
     int temp_day;
 
     ID=(rand()%1000);
-    cout<<"Input following information: "<<endl;
+    cout<<"----Input following information----"<<endl;
+    cout<<endl;
 
     cout<<"Item name: ";
     cin.ignore();
@@ -114,7 +115,7 @@ void info_getter(Item& _item){
     // i1.setDescription(description);
     // i1.setYear(year);
     // i1.setMonth(month);
-    // i1.setDay(day);
+    // i1.setDay(day);s
     // i1.setLocation(location);
     // i1.setContuct_number(contuct_number);
     
@@ -130,7 +131,8 @@ int main()
     
    while(W){
 
-        cout<<"\n---Lost & Found---"<<endl;
+        cout<<"___________________________"<<endl;
+        cout<<"\n-----Lost & Found-----"<<endl;
         cout<<"___________________________"<<endl;
         cout<<"Report lost item (1)"<<endl;
         cout<<"Register found item (2)"<<endl;
@@ -144,23 +146,27 @@ int main()
         switch (option)
         {
         case 1:
-            cout<<"Choosed option: Report item loss"<<endl;
+            cout<<"Choosen option: Report item loss"<<endl;
             info_getter(i1);
             // i1.Display();
             i1.Lost_database_info_saving();
             break;
         
         case 2:
-        cout<<"2"<<endl;
+            cout<<"Choosen option: Register found item"<<endl;
+            cout<<"This feature is currently under construction"<<endl;
+            cout<<"Please return later"<<endl;
             break;
 
         case 3:
-            cout<<"3"<<endl;
+            cout<<"Choosen option: Lost item list"<<endl;
             i1.Lost_database_list();
             break;
 
         case 4:
-            cout<<"4"<<endl;
+            cout<<"Choosen option: Found item list"<<endl;
+            cout<<"This feature is currently under construction"<<endl;
+            cout<<"Please return later"<<endl;
             break;
 
         case 5:
@@ -169,8 +175,7 @@ int main()
             break;
 
         default:
-            cout<<"Invalid user input, Please try again"<<endl;
-            
+            cout<<"Invalid user input, Please try again"<<endl; 
         }
     }
 
