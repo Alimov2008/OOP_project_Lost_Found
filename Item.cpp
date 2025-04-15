@@ -3,7 +3,7 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
-#include <vector>
+
 
 #include "myfunshare.h"
 
@@ -178,7 +178,7 @@ public:
             stringstream ss(temp_line);
             string temp_ID;
             getline(ss, temp_ID,',');
-            if (temp_ID==targetID)
+            if (stoi(temp_ID)==stoi(targetID))
             {
                 found=true;
             }
