@@ -127,17 +127,27 @@ public:
         cout<<"Contuct number: "<<contuct_number<<endl;
     }
     
+    string removeCommas(const string& input) {
+        string result;
+        for (char ch : input) {
+            if (ch != ',') {
+                result += ch; 
+            }
+        }
+        return result;
+    }
+
 //Info insertion 
     ofstream lost_db;
     void Lost_database_info_saving(){
         lost_db.open("lost_database.csv",ios::app);
         lost_db<<ID<<","
-        <<"\""<<name<<"\""<< ","
-        <<"\""<<description<< "\""<<","
+        <<"\""<<removeCommas(name)<<"\""<< ","
+        <<"\""<<removeCommas(description)<< "\""<<","
         <<year<<","
         <<month<<","
         <<day<<","
-        <<"\""<<location<<"\""<<","
+        <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number<<endl;
         lost_db.close();
     }
@@ -146,12 +156,12 @@ public:
     void Found_database_info_saving(){
         found_db.open("found_database.csv",ios::app);
         found_db << ID << ","
-        <<"\""<<name<<"\""<<","
-        <<"\""<<description<<"\""<<","
+        <<"\""<<removeCommas(name)<<"\""<<","
+        <<"\""<<removeCommas(description)<<"\""<<","
         <<year<<","
         <<month<<","
         <<day<<","
-        <<"\""<<location<<"\""<<","
+        <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number << endl;
         found_db.close();
     }
