@@ -254,46 +254,57 @@ public:
 
         while (getline(file, line)) {
             stringstream ss(line);
-            string field;
-            vector<string> fields;
+            string id, name, desc, year, month, day, location, contact;
     
-            while (getline(ss, field, ',')) {
-                if (!field.empty() && field.front() == '"' && field.back() == '"') {
-                    field = field.substr(1, field.size() - 2);
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, desc, ',');
+            getline(ss, year, ',');
+            getline(ss, month, ',');
+            getline(ss, day, ',');
+            getline(ss, location, ',');
+            getline(ss, contact, ',');
+    
+            auto strip_quotes = [](string &s) {
+                if (!s.empty() && s.front() == '"' && s.back() == '"') {
+                    s = s.substr(1, s.size() - 2);
                 }
-                fields.push_back(field);
-            }
+            };
     
-            if (fields.size() == 8) {
-                cout<<left
-                    <<setw(8)<<fields[0]
-                    <<setw(15)<<fields[1]
-                    <<setw(25)<<fields[2]
-                    <<setw(6)<<fields[3]
-                    <<setw(8)<<fields[4]
-                    <<setw(6)<<fields[5]
-                    <<setw(15)<<fields[6]
-                    <<setw(15)<<fields[7]<<endl;
-            }
+            strip_quotes(name);
+            strip_quotes(desc);
+            strip_quotes(location);
+    
+            cout << left
+                 << setw(8) << id
+                 << setw(15) << name
+                 << setw(25) << desc
+                 << setw(6) << year
+                 << setw(8) << month
+                 << setw(6) << day
+                 << setw(15) << location
+                 << setw(15) << contact << endl;
         }
+        
     
         file.close();
 
         cout << "Enter 1 to delete item" << endl;
         cout << "Enter 2 to exit" << endl;
         
-        option = datatype_checker<int>("Enter option: ");
 
-        if (option==1) {
-            Target_ID = datatype_checker<int>("Enter ID of item you want to delete: ");
-            delete_lost_database_item(to_string(Target_ID));
-            // break; 
-        } else if (option == 3) {
-            cout << "Exiting to main menu..." << endl;
-            // break;
-        } else {
-            cout << "No such option, Please try again\n\n" << endl;
-        }
+        option = datatype_checker<int>("Enter option: ");
+    
+            if (option == 1) {
+                Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
+                delete_found_database_item(to_string(Target_ID));
+                // break; 
+            } else if (option == 2) {
+                cout << "Exiting to main menu..." << endl;
+                // break;
+            } else {
+                cout << "No such option, Please try again\n\n" << endl;
+            }
     }
 
     void Found_database_list(){
@@ -320,28 +331,37 @@ public:
 
         while (getline(file, line)) {
             stringstream ss(line);
-            string field;
-            vector<string> fields;
+            string id, name, desc, year, month, day, location, contact;
     
-            while (getline(ss, field, ',')) {
-                if (!field.empty() && field.front() == '"' && field.back() == '"') {
-                    field = field.substr(1, field.size() - 2);
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, desc, ',');
+            getline(ss, year, ',');
+            getline(ss, month, ',');
+            getline(ss, day, ',');
+            getline(ss, location, ',');
+            getline(ss, contact, ',');
+    
+            auto strip_quotes = [](string &s) {
+                if (!s.empty() && s.front() == '"' && s.back() == '"') {
+                    s = s.substr(1, s.size() - 2);
                 }
-                fields.push_back(field);
-            }
+            };
     
-            if (fields.size() == 8) {
-                cout << left
-                    <<setw(8) <<fields[0]
-                    <<setw(15)<<fields[1]
-                    <<setw(25)<<fields[2]
-                    <<setw(6) <<fields[3]
-                    <<setw(8) <<fields[4]
-                    <<setw(6) <<fields[5]
-                    <<setw(15)<<fields[6]
-                    <<setw(15)<<fields[7] << endl;
-            }
-            file.close();
+            strip_quotes(name);
+            strip_quotes(desc);
+            strip_quotes(location);
+    
+            cout << left
+                 << setw(8) << id
+                 << setw(15) << name
+                 << setw(25) << desc
+                 << setw(6) << year
+                 << setw(8) << month
+                 << setw(6) << day
+                 << setw(15) << location
+                 << setw(15) << contact << endl;
+        }
 
             cout<<"Enter 1 to delete item" << endl;
             cout<<"Enter 2 to claim item"<<endl;
@@ -359,7 +379,6 @@ public:
             } else {
                 cout << "No such option, Please try again\n\n" << endl;
             }
-        }
-    };
+    }
 
 };
