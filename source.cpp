@@ -93,7 +93,6 @@ void info_getter(Item& _item){
     int temp_day;
 
     bool is_leap_year;
-    
 
     ID=(rand()%1000);
     cout<<"----Input following information----"<<endl;

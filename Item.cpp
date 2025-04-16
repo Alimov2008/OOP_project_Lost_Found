@@ -166,6 +166,50 @@ public:
         found_db.close();
     }
 
+//Opposite database item identification
+    void Lost_check_found_database(){
+        bool already_does_exists=false;
+        int Max_array_siza=1000;
+        string lost_names[Max_array_siza];
+        string found_names[Max_array_siza];
+        ifstream lost_checker("found_database.csv");
+        ifstream found_checker("lost_database.csv");
+        string temp_line_found;
+        string temp_line_lost;
+        int count_found=0;
+        int count_lost=0;
+
+        while (getline(lost_checker, temp_line_lost) && count_lost < Max_array_siza) {
+            stringstream ss(temp_line_lost);
+            string lost_id, lost_name;
+    
+            getline(ss, lost_id, ',');
+            getline(ss, lost_name, ',');
+    
+            lost_names[count_lost++] = lost_name;
+        }
+        
+        lost_checker.close();
+
+        while (getline(found_checker, temp_line_found) && count_found < Max_array_siza) {
+            stringstream ss(temp_line_lost);
+            string found_id, found_name;
+    
+            getline(ss, found_id, ',');
+            getline(ss, found_name, ',');
+    
+            found_names[count_found++] = found_name;
+        }
+        
+        found_checker.close();
+        
+       
+        
+
+    }
+
+    void Found_check_lost_database(){}
+
 //Database item deletion
     void delete_lost_database_item(const string& targetID){
         ifstream inputFile("lost_database.csv");
@@ -390,5 +434,6 @@ public:
                 cout << "No such option, Please try again\n\n" << endl;
             }
     }
+
 
 };
