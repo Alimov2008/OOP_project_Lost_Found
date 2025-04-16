@@ -140,6 +140,8 @@ public:
 //Info insertion 
     ofstream lost_db;
     void Lost_database_info_saving(){
+        
+
         lost_db.open("lost_database.csv",ios::app);
         lost_db<<ID<<","
         <<"\""<<removeCommas(name)<<"\""<< ","
@@ -167,7 +169,7 @@ public:
     }
 
 //Opposite database item identification
-    void Lost_check_found_database(){
+    bool Lost_check_found_database(){
         bool already_does_exists=false;
         int Max_array_siza=1000;
         string lost_names[Max_array_siza];
@@ -203,9 +205,19 @@ public:
         
         found_checker.close();
         
-       
-        
+        for (int i=0;i<count_lost;i++)
+        {
+            for (int j=0;j<count_found;j++)
+            {
+                if (found_names[j]==lost_names[i])
+                {
+                    already_does_exists=true;
+                }
+   
+            }      
+        }
 
+        return already_does_exists;
     }
 
     void Found_check_lost_database(){}
