@@ -141,7 +141,8 @@ public:
     ofstream lost_db;
     void Lost_database_info_saving(){
         if(Lost_check_found_database(removeCommas(name))){
-            cout<<"somebody already found you item";
+            cout<<"somebody already found you item"<<endl;
+            cout<<"Checkout found database list"<<endl;
         }
         else{
         lost_db.open("lost_database.csv",ios::app);
@@ -160,6 +161,12 @@ public:
 
     ofstream found_db;
     void Found_database_info_saving(){
+        if (Found_check_found_database(removeCommas(name)))
+        {
+            cout<<"Somebody Lost item with such characteristics"<<endl;
+            cout<<"Checkout Lost database list"<<endl;
+        }
+        else{
         found_db.open("found_database.csv",ios::app);
         found_db << ID << ","
         <<"\""<<removeCommas(name)<<"\""<<","
@@ -169,8 +176,9 @@ public:
         <<day<<","
         <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number << endl;
-        cout<<"-----Lost item info has been saved-----"<<endl;
-        found_db.close();
+        cout<<"-----Found item info has been saved-----"<<endl;
+        found_db.close();}
+        
     }
 
 //Opposite database item identification
@@ -196,7 +204,27 @@ public:
         return 0;
     }
 
+    bool Found_check_found_database(const string& Item_name){
+        ifstream file("lost_database.csv");
+        string line;
     
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string id, name;
+    
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            
+            if (!name.empty() && name.front() == '"' && name.back() == '"') {
+                name = name.substr(1, name.length() - 2);
+            }
+
+            if (name == Item_name) {
+                return true; 
+            }
+        }
+        return 0;
+    }
 
 //Database item deletion
     void delete_lost_database_item(const string& targetID){

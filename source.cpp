@@ -119,7 +119,6 @@ void info_getter(Item& _item){
             {
                 is_leap_year=true;
             }
-            
             break;
         }
         else{
