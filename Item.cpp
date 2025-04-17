@@ -140,6 +140,10 @@ public:
 //Info insertion 
     ofstream lost_db;
     void Lost_database_info_saving(){
+        if(Lost_check_found_database(removeCommas(name))){
+            cout<<"somebody already found you item";
+        }
+        else{
         lost_db.open("lost_database.csv",ios::app);
         lost_db<<ID<<","
         <<"\""<<removeCommas(name)<<"\""<< ","
@@ -149,7 +153,9 @@ public:
         <<day<<","
         <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number<<endl;
-        lost_db.close();
+        cout<<"-----Lost item info has been saved-----"<<endl;
+        lost_db.close();}
+
     }
 
     ofstream found_db;
@@ -163,39 +169,34 @@ public:
         <<day<<","
         <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number << endl;
+        cout<<"-----Lost item info has been saved-----"<<endl;
         found_db.close();
     }
 
 //Opposite database item identification
-    void Lost_check_found_database(){
-        bool already_does_exists=false;
-        int Max_array_siza=1000;
-        
-        string found_names[Max_array_siza];
-
-        ifstream found_checker("found_database.csv");
-        string temp_line_found;
-     
-        int count_found=0;
-        int count_lost=0;
-
-  
-
-        while (getline(found_checker, temp_line_found) && count_found < Max_array_siza) {
-            stringstream ss(temp_line_found);
-            string found_id, found_name;
+    bool Lost_check_found_database(const string& Item_name){
+        ifstream file("found_database.csv");
+        string line;
     
-            getline(ss, found_id, ',');
-            getline(ss, found_name, ',');
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string id, name;
     
-            found_names[count_found++] = found_name;
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            
+            if (!name.empty() && name.front() == '"' && name.back() == '"') {
+                name = name.substr(1, name.length() - 2);
+            }
+
+            if (name == Item_name) {
+                return true; 
+            }
         }
-        
-        found_checker.close();
-        
+        return 0;
     }
 
-    void Found_check_lost_database(){}
+    
 
 //Database item deletion
     void delete_lost_database_item(const string& targetID){

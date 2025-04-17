@@ -179,7 +179,7 @@ int main()
     
    while(W){
 
-        cout<<"___________________________"<<endl;
+        cout<<"\n___________________________"<<endl;
         cout<<"\n-----Lost & Found-----"<<endl;
         cout<<"___________________________"<<endl;
         cout<<"Report lost item (1)"<<endl;
@@ -197,7 +197,6 @@ int main()
             cout<<"Choosen option: Report item loss"<<endl;
             info_getter(i1);
             // i1.Display();
-            cout<<"-----Lost item info has been saved-----"<<endl;
             i1.Lost_database_info_saving();
             break;
         
@@ -205,7 +204,7 @@ int main()
             cout<<"Choosen option: Register found item"<<endl;
             info_getter(i1);
             // i1.Display();
-            cout<<"-----Lost item info has been saved-----"<<endl;
+
             i1.Found_database_info_saving();
             break;
 
