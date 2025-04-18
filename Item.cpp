@@ -311,17 +311,7 @@ public:
             return;
         }
         
-        cout<<left
-            <<setw(8)<<"ID"
-            <<setw(15)<<"Name"
-            <<setw(25)<<"Description"
-            <<setw(6)<<"Year"
-            <<setw(10)<<"Month"
-            <<setw(6)<<"Day"
-            <<setw(15)<<"Location"
-            <<setw(15)<<"Contact"<<endl;
-        cout<<string(102, '-')<<endl;
-
+        int count = 0;
         while (getline(file, line)) {
             stringstream ss(line);
             string id, name, desc, year, month, day, location, contact;
@@ -345,20 +335,17 @@ public:
             strip_quotes(desc);
             strip_quotes(location);
     
-            cout << left
-                 << setw(8) << id
-                 << setw(15) << name
-                 << setw(25) << desc
-                 << setw(6) << year
-                 << setw(10) << month
-                 << setw(6) << day
-                 << setw(15) << location
-                 << setw(15) << contact << endl;
+            cout << "\n================= Lost Item #" << ++count << " =================" << endl;
+            cout << "ID:           " << id << endl;
+            cout << "Name:         " << name << endl;
+            cout << "Description:  " << desc << endl;
+            cout << "Date Lost:    " << year << "-" << month << "-" << day << endl;
+            cout << "Location:     " << location << endl;
+            cout << "Contact Info: " << contact << endl;
         }
-        
     
         file.close();
-
+        cout<<"_________________________________________________________"<<endl;
         cout << "Enter 1 to delete item" << endl;
         cout << "Enter 2 to exit" << endl;
         
@@ -388,17 +375,7 @@ public:
             return;
         }
     
-        cout << left
-             << setw(8)  << "ID"
-             << setw(15) << "Name"
-             << setw(25) << "Description"
-             << setw(6)  << "Year"
-             << setw(10)  << "Month"
-             << setw(6)  << "Day"
-             << setw(15) << "Location"
-             << setw(15) << "Contact" << endl;
-        cout << string(102, '-') << endl;
-
+        int count = 0;
         while (getline(file, line)) {
             stringstream ss(line);
             string id, name, desc, year, month, day, location, contact;
@@ -422,33 +399,33 @@ public:
             strip_quotes(desc);
             strip_quotes(location);
     
-            cout << left
-                 << setw(8) << id
-                 << setw(15) << name
-                 << setw(25) << desc
-                 << setw(6) << year
-                 << setw(10) << month
-                 << setw(6) << day
-                 << setw(15) << location
-                 << setw(15) << contact << endl;
+            cout << "\n================= Found Item #" << ++count << " =================" << endl;
+            cout << "ID:           " << id << endl;
+            cout << "Name:         " << name << endl;
+            cout << "Description:  " << desc << endl;
+            cout << "Date Lost:    " << year << "-" << month << "-" << day << endl;
+            cout << "Location:     " << location << endl;
+            cout << "Contact Info: " << contact << endl;
         }
-
-            cout<<"Enter 1 to delete item" << endl;
-            cout<<"Enter 2 to claim item"<<endl;
-            cout<<"Enter 3 to exit" << endl;
-            
-            option = datatype_checker<int>("Enter option: ");
     
-            if (option == 1||option==2) {
-                Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
-                delete_found_database_item(to_string(Target_ID));
-                // break; 
-            } else if (option == 3) {
-                cout << "Exiting to main menu..." << endl;
-                // break;
-            } else {
-                cout << "No such option, Please try again\n\n" << endl;
-            }
+        file.close();
+        cout<<"_________________________________________________________"<<endl;
+        cout<<"Enter 1 to delete item" << endl;
+        cout<<"Enter 2 to claim item"<<endl;
+        cout<<"Enter 3 to exit" << endl;
+        
+        option = datatype_checker<int>("Enter option: ");
+
+        if (option == 1||option==2) {
+            Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
+            delete_found_database_item(to_string(Target_ID));
+            // break; 
+        } else if (option == 3) {
+            cout << "Exiting to main menu..." << endl;
+            // break;
+        } else {
+            cout << "No such option, Please try again\n\n" << endl;
+        }
     }
 
 
