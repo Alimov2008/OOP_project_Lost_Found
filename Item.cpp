@@ -316,7 +316,7 @@ public:
             <<setw(15)<<"Name"
             <<setw(25)<<"Description"
             <<setw(6)<<"Year"
-            <<setw(8)<<"Month"
+            <<setw(10)<<"Month"
             <<setw(6)<<"Day"
             <<setw(15)<<"Location"
             <<setw(15)<<"Contact"<<endl;
@@ -350,7 +350,7 @@ public:
                  << setw(15) << name
                  << setw(25) << desc
                  << setw(6) << year
-                 << setw(8) << month
+                 << setw(10) << month
                  << setw(6) << day
                  << setw(15) << location
                  << setw(15) << contact << endl;
@@ -393,7 +393,7 @@ public:
              << setw(15) << "Name"
              << setw(25) << "Description"
              << setw(6)  << "Year"
-             << setw(8)  << "Month"
+             << setw(10)  << "Month"
              << setw(6)  << "Day"
              << setw(15) << "Location"
              << setw(15) << "Contact" << endl;
@@ -427,7 +427,7 @@ public:
                  << setw(15) << name
                  << setw(25) << desc
                  << setw(6) << year
-                 << setw(8) << month
+                 << setw(10) << month
                  << setw(6) << day
                  << setw(15) << location
                  << setw(15) << contact << endl;

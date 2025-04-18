@@ -10,7 +10,7 @@
 
 using namespace std;
 
-string printMonthName(int monthNumber) {
+string printMonthName(int monthNumber){
     switch (monthNumber) {
         case 1:
             // cout << "January" << endl;
@@ -63,7 +63,21 @@ string printMonthName(int monthNumber) {
         default:
             cout << "Invalid month number. Please enter a number between 1 and 12." << endl;
     }
+    return 0;
 }
+
+int monthDaynumber(int monthNumber){
+    switch (monthNumber){
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            return 31;
+        case 4: case 6: case 9: case 11:
+            return 30;
+        case 2:
+            return 28; 
+        default:
+            return -1;
+    }
+} 
 
 template <typename T>
 T datatype_checker(const string& prompt){
@@ -104,6 +118,7 @@ void info_getter(Item& _item){
     int temp_day;
 
     bool is_leap_year;
+    int leap_add=0;
 
     ID=(rand()%1000);
     cout<<"----Input following information----"<<endl;
@@ -152,12 +167,16 @@ void info_getter(Item& _item){
     while (true)
     {
         temp_day=datatype_checker<int>("Day: ");
-        if (temp_day>0 && temp_day<=31){
+        if (is_leap_year && temp_month==2)
+        {
+            leap_add=1;
+        }
+        if (temp_day>0 && temp_day<=monthDaynumber(temp_month)+leap_add){
             day=temp_day;
             break;
         }
         else{
-            cout<<"Day must be more than 0 and less than 31, try again"<<endl;
+            cout<<"There is only "<<monthDaynumber(temp_month)+leap_add<<" in "<<month<<endl;
         }
     }
 
