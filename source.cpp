@@ -10,43 +10,55 @@
 
 using namespace std;
 
-void printMonthName(int monthNumber) {
+string printMonthName(int monthNumber) {
     switch (monthNumber) {
         case 1:
-            cout << "January" << endl;
+            // cout << "January" << endl;
+            return "January";
             break;
         case 2:
-            cout << "February" << endl;
+            // cout << "February" << endl;
+            return "February";
             break;
         case 3:
-            cout << "March" << endl;
+            // cout << "March" << endl;
+            return "March";
             break;
         case 4:
-            cout << "April" << endl;
+            // cout << "April" << endl;
+            return "April";
             break;
         case 5:
-            cout << "May" << endl;
+            // cout << "May" << endl;
+            return "May";
             break;
         case 6:
-            cout << "June" << endl;
+            // cout << "June" << endl;
+            return "June";
             break;
         case 7:
-            cout << "July" << endl;
+            // cout << "July" << endl;
+            return "July";
             break;
         case 8:
-            cout << "August" << endl;
+            // cout << "August" << endl;
+            return "August";
             break;
         case 9:
-            cout << "September" << endl;
+            // cout << "September" << endl;
+            return "September";
             break;
         case 10:
-            cout << "October" << endl;
+            // cout << "October" << endl;
+            return "October";
             break;
         case 11:
-            cout << "November" << endl;
+            // cout << "November" << endl;
+            return "November";
             break;
         case 12:
-            cout << "December" << endl;
+            // cout << "December" << endl;
+            return "December";
             break;
         default:
             cout << "Invalid month number. Please enter a number between 1 and 12." << endl;
@@ -74,7 +86,6 @@ T datatype_checker(const string& prompt){
 }
 
 
-
 void info_getter(Item& _item){
     srand(time(NULL));
     
@@ -83,7 +94,7 @@ void info_getter(Item& _item){
     string description;
       //time
       int year;
-      int month;
+      string month;
       int day;
     string location;
     long int contuct_number;
@@ -130,7 +141,7 @@ void info_getter(Item& _item){
     {
         temp_month=datatype_checker<int>("Month: ");
         if (temp_month>0 && temp_month<=12){
-            month=temp_month;
+            month=printMonthName(temp_month);
             break;
         } 
         else{

@@ -17,7 +17,7 @@ protected:
     string description;
       //time
       int year;
-      int month;
+      string month;
       int day;
     string location;
     long int contuct_number;
@@ -25,17 +25,17 @@ protected:
 public:
     Item(){
         ID=0;
-        name="Unknown item";
-        description="Unknown item";
+        name="Unknown";
+        description="Unknown";
             //time
             year=0;
-            month=0;
+            month="Unknown";
             day=0;
         location="Unknown";
         contuct_number=0;
     }
 
-    Item(int _ID,string _name,string _description,int _year,int _month,int _day,string _location,int _contuct_number)
+    Item(int _ID,string _name,string _description,int _year,string _month,int _day,string _location,int _contuct_number)
     {   
         ID=_ID;
         name=_name;
@@ -47,7 +47,7 @@ public:
         contuct_number=_contuct_number;
     }
     
-    void setData(int __ID,string __name,string __description,int __year,int __month,int __day,string __location,int __contuct_number)
+    void setData(int __ID,string __name,string __description,int __year,string __month,int __day,string __location,int __contuct_number)
     {   
         ID=__ID;
         name=__name;
@@ -150,7 +150,7 @@ public:
         <<"\""<<removeCommas(name)<<"\""<< ","
         <<"\""<<removeCommas(description)<< "\""<<","
         <<year<<","
-        <<month<<","
+        <<removeCommas(month)<<","
         <<day<<","
         <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number<<endl;
