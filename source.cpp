@@ -211,11 +211,11 @@ int main()
         cout<<"\n___________________________"<<endl;
         cout<<"\n-----Lost & Found-----"<<endl;
         cout<<"___________________________"<<endl;
-        cout<<"Report lost item (1)"<<endl;
-        cout<<"Register found item (2)"<<endl;
-        cout<<"Lost item list (3)"<<endl;
-        cout<<"Found item list (4)"<<endl;
-        cout<<"Exit (5)"<<endl;
+        cout<<"1. Report lost item"<<endl;
+        cout<<"2. Register found item"<<endl;
+        cout<<"3. Lost item list"<<endl;
+        cout<<"3. Found item list"<<endl;
+        cout<<"5. Exit"<<endl;
         cout<<"___________________________"<<endl;
         cout<<"Choose option: ";
 
