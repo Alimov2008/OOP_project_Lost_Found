@@ -19,17 +19,4 @@ using namespace std;
 //     ofstream L_database;
     
 
-//     void data_input(){
-//         L_database.open("lost_database.csv");
-//         L_database<<ID<<",";
-//     }
-    
-// };
 
-int main()
-{   
-    string name="hamster";
-    bool AAA=Lost_check_found_database(name);
-    cout<<"\n"<<AAA<<endl;
-    return 0;
-}
