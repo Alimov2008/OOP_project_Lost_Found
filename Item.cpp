@@ -145,6 +145,8 @@ public:
             cout<<"Checkout found database list"<<endl;
         }
         else{
+        
+
         lost_db.open("lost_database.csv",ios::app);
         lost_db<<ID<<","
         <<"\""<<removeCommas(name)<<"\""<< ","
