@@ -21,7 +21,6 @@ protected:
       int day;
     string location;
     long int contuct_number;
-    // bool W=true;
 public:
     Item(){
         ID=0;
@@ -59,51 +58,6 @@ public:
         contuct_number=__contuct_number;
     };
 
-    // void setID(int __id){
-    //     ID=__id;
-    // }
-    
-    // void setName(string __name){
-    //     name=__name;
-    // }
-
-    // void setDescription(string __description){
-    //     description=__description;
-    // }
-    //Time
-    //     void setYear(int __year){
-    //         if (__year>0){
-    //             year=__year;
-    //         }
-    //         else{
-    //             cout<<"JESUS";
-    //         }
-            
-    //     void setMonth(int __month){
-    //         if (__month>0 && __month<12){
-    //             month=__month;
-    //         }
-    //         else{
-    //             cout<<"month cannot be more than 12 or less than 1";
-    //         }
-    //     }
-
-    //     void setDay(int __day){
-    //         if (__day>0 && __day<31){
-    //             day=__day;
-    //         }
-    //         else{
-    //             cout<<"there are no less than 1 and no more than 31 days in a  month";
-    //         }
-            
-    // void setLocation(string __location){
-    //     location=__location;
-    // }
-
-    // void setContuct_number(long int __con_number){
-    //     contuct_number=__con_number;
-    // }
-
     bool operator=(const Item &it){
         this->ID=it.ID;
         this->name=it.name;
@@ -115,7 +69,6 @@ public:
         this->contuct_number=it.contuct_number;
         return 0;
     }
-
 
     void Display(){
         cout<<"Info Provided: ";
@@ -341,7 +294,7 @@ public:
             cout << "ID:           " << id << endl;
             cout << "Name:         " << name << endl;
             cout << "Description:  " << desc << endl;
-            cout << "Date Lost:    " << year << "-" << month << "-" << day << endl;
+            cout << "Lost date:    " << year << "-" << month << "-" << day << endl;
             cout << "Location:     " << location << endl;
             cout << "Contact Info: " << contact << endl;
         }

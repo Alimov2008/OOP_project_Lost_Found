@@ -160,7 +160,7 @@ void info_getter(Item& _item){
             break;
         } 
         else{
-            cout<<"Invaclid month number, enter number between 1 and 12"<<endl;
+            cout<<"Invalid month number, enter number between 1 and 12"<<endl;
         }
     }
     
@@ -181,23 +181,11 @@ void info_getter(Item& _item){
     }
 
     cout<<"Location: ";
-    // cin.ignore();
     getline(cin, location);
     
     contuct_number=datatype_checker<long int>("Your Contuct: ");
 
-    // Item i1;
-    // i1.setID(1);
-    // i1.setName(name);
-    // i1.setDescription(description);
-    // i1.setYear(year);
-    // i1.setMonth(month);
-    // i1.setDay(day);s
-    // i1.setLocation(location);
-    // i1.setContuct_number(contuct_number);
-    
     _item.setData(ID,name,description,year,month,day,location,contuct_number);
-    
 }
 
 int main()
