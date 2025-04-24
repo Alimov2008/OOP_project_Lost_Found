@@ -196,15 +196,15 @@ int main()
     
    while(W){
 
-        cout<<"\n___________________________"<<endl;
-        cout<<"\n-----Lost & Found-----"<<endl;
-        cout<<"___________________________"<<endl;
+        cout<<"\n__________________________________________________"<<endl;
+        cout<<"\n--------Lost & Found--------"<<endl;
+        cout<<"____________________________________________________"<<endl;
         cout<<"1. Report lost item"<<endl;
         cout<<"2. Register found item"<<endl;
         cout<<"3. Lost item list"<<endl;
-        cout<<"3. Found item list"<<endl;
+        cout<<"4. Found item list"<<endl;
         cout<<"5. Exit"<<endl;
-        cout<<"___________________________"<<endl;
+        cout<<"____________________________________________________"<<endl;
         cout<<"Choose option: ";
 
         cin>>option;

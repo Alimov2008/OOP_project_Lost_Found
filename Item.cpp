@@ -261,7 +261,7 @@ public:
         int option;
         int Target_ID;
     
-        if (!file.is_open()) {
+        if (!file.good()) {
             cout << "Could not open lost_database.csv\n";
             return;
         }
@@ -325,7 +325,7 @@ public:
         int option;
         int Target_ID;
     
-        if (!file.is_open()) {
+        if (!file.good()) {
             cout << "Could not open found_database.csv\n";
             return;
         }
