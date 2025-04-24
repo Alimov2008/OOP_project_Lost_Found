@@ -17,25 +17,24 @@ protected:
     string description;
       //time
       int year;
-      int month;
+      string month;
       int day;
     string location;
     long int contuct_number;
-    // bool W=true;
 public:
     Item(){
         ID=0;
-        name="Unknown item";
-        description="Unknown item";
+        name="Unknown";
+        description="Unknown";
             //time
             year=0;
-            month=0;
+            month="Unknown";
             day=0;
         location="Unknown";
         contuct_number=0;
     }
 
-    Item(int _ID,string _name,string _description,int _year,int _month,int _day,string _location,int _contuct_number)
+    Item(int _ID,string _name,string _description,int _year,string _month,int _day,string _location,int _contuct_number)
     {   
         ID=_ID;
         name=_name;
@@ -47,7 +46,7 @@ public:
         contuct_number=_contuct_number;
     }
     
-    void setData(int __ID,string __name,string __description,int __year,int __month,int __day,string __location,int __contuct_number)
+    void setData(int __ID,string __name,string __description,int __year,string __month,int __day,string __location,int __contuct_number)
     {   
         ID=__ID;
         name=__name;
@@ -58,51 +57,6 @@ public:
         location=__location;
         contuct_number=__contuct_number;
     };
-
-    // void setID(int __id){
-    //     ID=__id;
-    // }
-    
-    // void setName(string __name){
-    //     name=__name;
-    // }
-
-    // void setDescription(string __description){
-    //     description=__description;
-    // }
-    //Time
-    //     void setYear(int __year){
-    //         if (__year>0){
-    //             year=__year;
-    //         }
-    //         else{
-    //             cout<<"JESUS";
-    //         }
-            
-    //     void setMonth(int __month){
-    //         if (__month>0 && __month<12){
-    //             month=__month;
-    //         }
-    //         else{
-    //             cout<<"month cannot be more than 12 or less than 1";
-    //         }
-    //     }
-
-    //     void setDay(int __day){
-    //         if (__day>0 && __day<31){
-    //             day=__day;
-    //         }
-    //         else{
-    //             cout<<"there are no less than 1 and no more than 31 days in a  month";
-    //         }
-            
-    // void setLocation(string __location){
-    //     location=__location;
-    // }
-
-    // void setContuct_number(long int __con_number){
-    //     contuct_number=__con_number;
-    // }
 
     bool operator=(const Item &it){
         this->ID=it.ID;
@@ -115,7 +69,6 @@ public:
         this->contuct_number=it.contuct_number;
         return 0;
     }
-
 
     void Display(){
         cout<<"Info Provided: ";
@@ -140,6 +93,11 @@ public:
 //Info insertion 
     ofstream lost_db;
     void Lost_database_info_saving(){
+        if(Lost_check_found_database(removeCommas(name))){
+            cout<<"somebody already found you item"<<endl;
+            cout<<"Checkout found database list"<<endl;
+        }
+        else{
         
 
         lost_db.open("lost_database.csv",ios::app);
@@ -147,15 +105,23 @@ public:
         <<"\""<<removeCommas(name)<<"\""<< ","
         <<"\""<<removeCommas(description)<< "\""<<","
         <<year<<","
-        <<month<<","
+        <<removeCommas(month)<<","
         <<day<<","
         <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number<<endl;
-        lost_db.close();
+        cout<<"-----Lost item info has been saved-----"<<endl;
+        lost_db.close();}
+
     }
 
     ofstream found_db;
     void Found_database_info_saving(){
+        if (Found_check_found_database(removeCommas(name)))
+        {
+            cout<<"Somebody Lost item with such characteristics"<<endl;
+            cout<<"Checkout Lost database list"<<endl;
+        }
+        else{
         found_db.open("found_database.csv",ios::app);
         found_db << ID << ","
         <<"\""<<removeCommas(name)<<"\""<<","
@@ -165,62 +131,55 @@ public:
         <<day<<","
         <<"\""<<removeCommas(location)<<"\""<<","
         <<contuct_number << endl;
-        found_db.close();
+        cout<<"-----Found item info has been saved-----"<<endl;
+        found_db.close();}
+        
     }
 
 //Opposite database item identification
-    bool Lost_check_found_database(){
-        bool already_does_exists=false;
-        int Max_array_siza=1000;
-        string lost_names[Max_array_siza];
-        string found_names[Max_array_siza];
-        ifstream lost_checker("found_database.csv");
-        ifstream found_checker("lost_database.csv");
-        string temp_line_found;
-        string temp_line_lost;
-        int count_found=0;
-        int count_lost=0;
+    bool Lost_check_found_database(const string& Item_name){
+        ifstream file("found_database.csv");
+        string line;
+    
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string id, name;
+    
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            
+            if (!name.empty() && name.front() == '"' && name.back() == '"') {
+                name = name.substr(1, name.length() - 2);
+            }
 
-        while (getline(lost_checker, temp_line_lost) && count_lost < Max_array_siza) {
-            stringstream ss(temp_line_lost);
-            string lost_id, lost_name;
-    
-            getline(ss, lost_id, ',');
-            getline(ss, lost_name, ',');
-    
-            lost_names[count_lost++] = lost_name;
+            if (name == Item_name) {
+                return true; 
+            }
         }
-        
-        lost_checker.close();
-
-        while (getline(found_checker, temp_line_found) && count_found < Max_array_siza) {
-            stringstream ss(temp_line_lost);
-            string found_id, found_name;
-    
-            getline(ss, found_id, ',');
-            getline(ss, found_name, ',');
-    
-            found_names[count_found++] = found_name;
-        }
-        
-        found_checker.close();
-        
-        for (int i=0;i<count_lost;i++)
-        {
-            for (int j=0;j<count_found;j++)
-            {
-                if (found_names[j]==lost_names[i])
-                {
-                    already_does_exists=true;
-                }
-   
-            }      
-        }
-
-        return already_does_exists;
+        return 0;
     }
 
-    void Found_check_lost_database(){}
+    bool Found_check_found_database(const string& Item_name){
+        ifstream file("lost_database.csv");
+        string line;
+    
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string id, name;
+    
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            
+            if (!name.empty() && name.front() == '"' && name.back() == '"') {
+                name = name.substr(1, name.length() - 2);
+            }
+
+            if (name == Item_name) {
+                return true; 
+            }
+        }
+        return 0;
+    }
 
 //Database item deletion
     void delete_lost_database_item(const string& targetID){
@@ -307,17 +266,7 @@ public:
             return;
         }
         
-        cout<<left
-            <<setw(8)<<"ID"
-            <<setw(15)<<"Name"
-            <<setw(25)<<"Description"
-            <<setw(6)<<"Year"
-            <<setw(8)<<"Month"
-            <<setw(6)<<"Day"
-            <<setw(15)<<"Location"
-            <<setw(15)<<"Contact"<<endl;
-        cout<<string(102, '-')<<endl;
-
+        int count = 0;
         while (getline(file, line)) {
             stringstream ss(line);
             string id, name, desc, year, month, day, location, contact;
@@ -341,20 +290,17 @@ public:
             strip_quotes(desc);
             strip_quotes(location);
     
-            cout << left
-                 << setw(8) << id
-                 << setw(15) << name
-                 << setw(25) << desc
-                 << setw(6) << year
-                 << setw(8) << month
-                 << setw(6) << day
-                 << setw(15) << location
-                 << setw(15) << contact << endl;
+            cout << "\n================= Lost Item #" << ++count << " =================" << endl;
+            cout << "ID:           " << id << endl;
+            cout << "Name:         " << name << endl;
+            cout << "Description:  " << desc << endl;
+            cout << "Lost date:    " << year << "-" << month << "-" << day << endl;
+            cout << "Location:     " << location << endl;
+            cout << "Contact Info: " << contact << endl;
         }
-        
     
         file.close();
-
+        cout<<"_________________________________________________________"<<endl;
         cout << "Enter 1 to delete item" << endl;
         cout << "Enter 2 to exit" << endl;
         
@@ -384,17 +330,7 @@ public:
             return;
         }
     
-        cout << left
-             << setw(8)  << "ID"
-             << setw(15) << "Name"
-             << setw(25) << "Description"
-             << setw(6)  << "Year"
-             << setw(8)  << "Month"
-             << setw(6)  << "Day"
-             << setw(15) << "Location"
-             << setw(15) << "Contact" << endl;
-        cout << string(102, '-') << endl;
-
+        int count = 0;
         while (getline(file, line)) {
             stringstream ss(line);
             string id, name, desc, year, month, day, location, contact;
@@ -418,33 +354,33 @@ public:
             strip_quotes(desc);
             strip_quotes(location);
     
-            cout << left
-                 << setw(8) << id
-                 << setw(15) << name
-                 << setw(25) << desc
-                 << setw(6) << year
-                 << setw(8) << month
-                 << setw(6) << day
-                 << setw(15) << location
-                 << setw(15) << contact << endl;
+            cout << "\n================= Found Item #" << ++count << " =================" << endl;
+            cout << "ID:           " << id << endl;
+            cout << "Name:         " << name << endl;
+            cout << "Description:  " << desc << endl;
+            cout << "Date Lost:    " << year << "-" << month << "-" << day << endl;
+            cout << "Location:     " << location << endl;
+            cout << "Contact Info: " << contact << endl;
         }
-
-            cout<<"Enter 1 to delete item" << endl;
-            cout<<"Enter 2 to claim item"<<endl;
-            cout<<"Enter 3 to exit" << endl;
-            
-            option = datatype_checker<int>("Enter option: ");
     
-            if (option == 1||option==2) {
-                Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
-                delete_found_database_item(to_string(Target_ID));
-                // break; 
-            } else if (option == 3) {
-                cout << "Exiting to main menu..." << endl;
-                // break;
-            } else {
-                cout << "No such option, Please try again\n\n" << endl;
-            }
+        file.close();
+        cout<<"_________________________________________________________"<<endl;
+        cout<<"Enter 1 to delete item" << endl;
+        cout<<"Enter 2 to claim item"<<endl;
+        cout<<"Enter 3 to exit" << endl;
+        
+        option = datatype_checker<int>("Enter option: ");
+
+        if (option == 1||option==2) {
+            Target_ID = datatype_checker<int>("Enter ID of item you want to delete/claim: ");
+            delete_found_database_item(to_string(Target_ID));
+            // break; 
+        } else if (option == 3) {
+            cout << "Exiting to main menu..." << endl;
+            // break;
+        } else {
+            cout << "No such option, Please try again\n\n" << endl;
+        }
     }
 
 

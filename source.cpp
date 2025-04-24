@@ -10,48 +10,74 @@
 
 using namespace std;
 
-void printMonthName(int monthNumber) {
+string printMonthName(int monthNumber){
     switch (monthNumber) {
         case 1:
-            cout << "January" << endl;
+            // cout << "January" << endl;
+            return "January";
             break;
         case 2:
-            cout << "February" << endl;
+            // cout << "February" << endl;
+            return "February";
             break;
         case 3:
-            cout << "March" << endl;
+            // cout << "March" << endl;
+            return "March";
             break;
         case 4:
-            cout << "April" << endl;
+            // cout << "April" << endl;
+            return "April";
             break;
         case 5:
-            cout << "May" << endl;
+            // cout << "May" << endl;
+            return "May";
             break;
         case 6:
-            cout << "June" << endl;
+            // cout << "June" << endl;
+            return "June";
             break;
         case 7:
-            cout << "July" << endl;
+            // cout << "July" << endl;
+            return "July";
             break;
         case 8:
-            cout << "August" << endl;
+            // cout << "August" << endl;
+            return "August";
             break;
         case 9:
-            cout << "September" << endl;
+            // cout << "September" << endl;
+            return "September";
             break;
         case 10:
-            cout << "October" << endl;
+            // cout << "October" << endl;
+            return "October";
             break;
         case 11:
-            cout << "November" << endl;
+            // cout << "November" << endl;
+            return "November";
             break;
         case 12:
-            cout << "December" << endl;
+            // cout << "December" << endl;
+            return "December";
             break;
         default:
             cout << "Invalid month number. Please enter a number between 1 and 12." << endl;
     }
+    return 0;
 }
+
+int monthDaynumber(int monthNumber){
+    switch (monthNumber){
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            return 31;
+        case 4: case 6: case 9: case 11:
+            return 30;
+        case 2:
+            return 28; 
+        default:
+            return -1;
+    }
+} 
 
 template <typename T>
 T datatype_checker(const string& prompt){
@@ -74,7 +100,6 @@ T datatype_checker(const string& prompt){
 }
 
 
-
 void info_getter(Item& _item){
     srand(time(NULL));
     
@@ -83,7 +108,7 @@ void info_getter(Item& _item){
     string description;
       //time
       int year;
-      int month;
+      string month;
       int day;
     string location;
     long int contuct_number;
@@ -93,6 +118,7 @@ void info_getter(Item& _item){
     int temp_day;
 
     bool is_leap_year;
+    int leap_add=0;
 
     ID=(rand()%1000);
     cout<<"----Input following information----"<<endl;
@@ -119,7 +145,6 @@ void info_getter(Item& _item){
             {
                 is_leap_year=true;
             }
-            
             break;
         }
         else{
@@ -131,44 +156,36 @@ void info_getter(Item& _item){
     {
         temp_month=datatype_checker<int>("Month: ");
         if (temp_month>0 && temp_month<=12){
-            month=temp_month;
+            month=printMonthName(temp_month);
             break;
         } 
         else{
-            cout<<"Invaclid month number, enter number between 1 and 12"<<endl;
+            cout<<"Invalid month number, enter number between 1 and 12"<<endl;
         }
     }
     
     while (true)
     {
         temp_day=datatype_checker<int>("Day: ");
-        if (temp_day>0 && temp_day<=31){
+        if (is_leap_year && temp_month==2)
+        {
+            leap_add=1;
+        }
+        if (temp_day>0 && temp_day<=monthDaynumber(temp_month)+leap_add){
             day=temp_day;
             break;
         }
         else{
-            cout<<"Day must be more than 0 and less than 31, try again"<<endl;
+            cout<<"There is only "<<monthDaynumber(temp_month)+leap_add<<" in "<<month<<endl;
         }
     }
 
     cout<<"Location: ";
-    // cin.ignore();
     getline(cin, location);
     
     contuct_number=datatype_checker<long int>("Your Contuct: ");
 
-    // Item i1;
-    // i1.setID(1);
-    // i1.setName(name);
-    // i1.setDescription(description);
-    // i1.setYear(year);
-    // i1.setMonth(month);
-    // i1.setDay(day);s
-    // i1.setLocation(location);
-    // i1.setContuct_number(contuct_number);
-    
     _item.setData(ID,name,description,year,month,day,location,contuct_number);
-    
 }
 
 int main()
@@ -179,14 +196,14 @@ int main()
     
    while(W){
 
-        cout<<"___________________________"<<endl;
+        cout<<"\n___________________________"<<endl;
         cout<<"\n-----Lost & Found-----"<<endl;
         cout<<"___________________________"<<endl;
-        cout<<"Report lost item (1)"<<endl;
-        cout<<"Register found item (2)"<<endl;
-        cout<<"Lost item list (3)"<<endl;
-        cout<<"Found item list (4)"<<endl;
-        cout<<"Exit (5)"<<endl;
+        cout<<"1. Report lost item"<<endl;
+        cout<<"2. Register found item"<<endl;
+        cout<<"3. Lost item list"<<endl;
+        cout<<"3. Found item list"<<endl;
+        cout<<"5. Exit"<<endl;
         cout<<"___________________________"<<endl;
         cout<<"Choose option: ";
 
@@ -197,7 +214,6 @@ int main()
             cout<<"Choosen option: Report item loss"<<endl;
             info_getter(i1);
             // i1.Display();
-            cout<<"-----Lost item info has been saved-----"<<endl;
             i1.Lost_database_info_saving();
             break;
         
@@ -205,7 +221,7 @@ int main()
             cout<<"Choosen option: Register found item"<<endl;
             info_getter(i1);
             // i1.Display();
-            cout<<"-----Lost item info has been saved-----"<<endl;
+
             i1.Found_database_info_saving();
             break;
 
@@ -227,6 +243,5 @@ int main()
             cout<<"Invalid user input, Please try again"<<endl; 
         }
     }
-
     return 0;
 }
