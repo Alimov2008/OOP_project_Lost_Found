@@ -6,7 +6,9 @@
 #include <fstream>
 
 #include "myfunshare.h"
-#include "Item.cpp"
+#include "Item.h"
+#include "Lost.h"
+#include "Found.h"
 
 using namespace std;
 
@@ -192,6 +194,8 @@ int main()
 {   
     bool W=true;
     Item i1;
+    Lost l1;
+    Found f1;
     int option;
     
    while(W){
@@ -212,26 +216,26 @@ int main()
         {
         case 1:
             cout<<"Choosen option: Report item loss"<<endl;
-            info_getter(i1);
+            info_getter(l1);
             // i1.Display();
-            i1.Lost_database_info_saving();
+            l1.Lost_database_info_saving();
             break;
         
         case 2:
             cout<<"Choosen option: Register found item"<<endl;
-            info_getter(i1);
+            info_getter(f1);
             // i1.Display();
 
-            i1.Found_database_info_saving();
+            f1.Found_database_info_saving();
             break;
 
         case 3:
             cout<<"Choosen option: Lost item list"<<endl;
-            i1.Lost_database_list();
+            l1.Lost_database_list();
             break;
         case 4:
             cout<<"Choosen option: Found item list"<<endl;
-            i1.Found_database_list();
+            f1.Found_database_list();
             break;
 
         case 5:
