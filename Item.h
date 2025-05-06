@@ -93,11 +93,91 @@ public:
         return result;
     }
 
-    void Find_Item(const string& name){
-        
+    void Find_Item(){
+        string SearchName;
+        cout<<"Enter nameof the Item you want to find: ";
+        getline(cin,SearchName);
+
+        ifstream lost_db("lost_database.csv");
+        ifstream found_db("found_database.csv");
+
+        if (!lost_db.is_open()) {
+            cerr<<"Error: Cannot open file "<<endl;
+            return;
+        }
+
+        if (!found_db.is_open()) {
+            cerr<<"Error: Cannot open file "<<endl;
+            return;
+        }
+
+        bool found=false;
+        string line;
+
+        while (getline(lost_db,line))
+        {
+            stringstream ss(line);
+            string id, name, description, year, month, day, location, contact;
+            
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, description, ',');
+            getline(ss, year, ',');
+            getline(ss, month, ',');
+            getline(ss, day, ',');
+            getline(ss, location, ',');
+            getline(ss, contact);
+
+            if (name.find(SearchName)!=string::npos)
+            {
+                found=true;
+                cout<<"\n================= Lost Item =================" << endl;
+                cout<<"ID:           "<<id << endl;
+                cout<<"Name:         "<<name << endl;
+                cout<<"Description:  "<<description << endl;
+                cout<<"Lost date:    "<<year << "-" << month << "-" << day << endl;
+                cout<<"Location:     "<<location << endl;
+                cout<<"Contact Info: "<<contact << endl;
+            }
+            
+        }
+
+        while (getline(found_db,line))
+        {
+            stringstream ss(line);
+            string id, name, description, year, month, day, location, contact;
+            
+            getline(ss, id, ',');
+            getline(ss, name, ',');
+            getline(ss, description, ',');
+            getline(ss, year, ',');
+            getline(ss, month, ',');
+            getline(ss, day, ',');
+            getline(ss, location, ',');
+            getline(ss, contact);
+
+            if (name.find(SearchName)!=string::npos)
+            {
+                found=true;
+                cout<<"\n================= Found Item =================" << endl;
+                cout<<"ID:           "<<id << endl;
+                cout<<"Name:         "<<name << endl;
+                cout<<"Description:  "<<description << endl;
+                cout<<"Lost date:    "<<year << "-" << month << "-" << day << endl;
+                cout<<"Location:     "<<location << endl;
+                cout<<"Contact Info: "<<contact << endl;
+            }
+            
+        }
+
+        if (!found) {
+            cout<<"No items found matching name: "<<SearchName<<endl;
+        }
+
+        lost_db.close();
+        found_db.close();
     }
 
-    
 };
 
 #endif
