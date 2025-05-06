@@ -16,24 +16,24 @@ class Found:public Item{
     public:
         using Item::Item;
         ofstream found_db;
-        void Found_database_info_saving(){
-            if (Found_check_found_database(removeCommas(name)))
-            {
-                cout<<"Somebody Lost item with such characteristics"<<endl;
-                cout<<"Checkout Lost database list"<<endl;
-            }
-            else{
-            found_db.open("found_database.csv",ios::app);
-            found_db << ID << ","
-            <<"\""<<removeCommas(name)<<"\""<<","
-            <<"\""<<removeCommas(description)<<"\""<<","
-            <<year<<","
-            <<month<<","
-            <<day<<","
-            <<"\""<<removeCommas(location)<<"\""<<","
-            <<contuct_number << endl;
-            cout<<"-----Found item info has been saved-----"<<endl;
-            found_db.close();}
+    void Found_database_info_saving(){
+        if (Found_check_found_database(removeCommas(name)))
+        {
+            cout<<"Somebody Lost item with such characteristics"<<endl;
+            cout<<"Checkout Lost database list"<<endl;
+        }
+        else{
+        found_db.open("found_database.csv",ios::app);
+        found_db << ID << ","
+        <<"\""<<removeCommas(name)<<"\""<<","
+        <<"\""<<removeCommas(description)<<"\""<<","
+        <<year<<","
+        <<month<<","
+        <<day<<","
+        <<"\""<<removeCommas(location)<<"\""<<","
+        <<contuct_number << endl;
+        cout<<"-----Found item info has been saved-----"<<endl;
+        found_db.close();}
         
     }
 

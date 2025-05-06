@@ -101,7 +101,6 @@ T datatype_checker(const string& prompt){
     }
 }
 
-
 void info_getter(Item& _item){
     srand(time(NULL));
     
@@ -209,9 +208,8 @@ int main()
         cout<<"4. Found item list"<<endl;
         cout<<"5. Exit"<<endl;
         cout<<"____________________________________________________"<<endl;
-        cout<<"Choose option: ";
 
-        cin>>option;
+        option=datatype_checker<int>("Choose option: ");
         switch (option)
         {
         case 1:
