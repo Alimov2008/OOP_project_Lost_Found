@@ -19,7 +19,7 @@ class Lost:public Item{
     ofstream lost_db;
     void Lost_database_info_saving(){
         if(Lost_check_found_database(removeCommas(name))){
-            cout<<"somebody already found you item"<<endl;
+            cout<<"somebody has already found similar item"<<endl;
             cout<<"Checkout found database list"<<endl;
         }
         else{

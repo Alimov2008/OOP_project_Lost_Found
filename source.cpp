@@ -126,7 +126,6 @@ void info_getter(Item& _item){
     cout<<endl;
 
     cout<<"Item name: ";
-    cin.ignore();
     getline(cin, name);
     cout<<""<<endl;
 
