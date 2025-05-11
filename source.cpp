@@ -14,54 +14,18 @@ using namespace std;
 
 string printMonthName(int monthNumber){
     switch (monthNumber) {
-        case 1:
-            // cout << "January" << endl;
-            return "January";
-            break;
-        case 2:
-            // cout << "February" << endl;
-            return "February";
-            break;
-        case 3:
-            // cout << "March" << endl;
-            return "March";
-            break;
-        case 4:
-            // cout << "April" << endl;
-            return "April";
-            break;
-        case 5:
-            // cout << "May" << endl;
-            return "May";
-            break;
-        case 6:
-            // cout << "June" << endl;
-            return "June";
-            break;
-        case 7:
-            // cout << "July" << endl;
-            return "July";
-            break;
-        case 8:
-            // cout << "August" << endl;
-            return "August";
-            break;
-        case 9:
-            // cout << "September" << endl;
-            return "September";
-            break;
-        case 10:
-            // cout << "October" << endl;
-            return "October";
-            break;
-        case 11:
-            // cout << "November" << endl;
-            return "November";
-            break;
-        case 12:
-            // cout << "December" << endl;
-            return "December";
-            break;
+        case 1: return "January";
+        case 2: return "February";
+        case 3: return "March";
+        case 4: return "April";
+        case 5: return "May";
+        case 6: return "June";
+        case 7: return "July";
+        case 8: return "August";
+        case 9: return "September";
+        case 10: return "October";
+        case 11: return "November";
+        case 12: return "December";
         default:
             cout << "Invalid month number. Please enter a number between 1 and 12." << endl;
     }
@@ -178,6 +142,7 @@ void info_getter(Item& _item){
         else{
             cout<<"There is only "<<monthDaynumber(temp_month)+leap_add<<" in "<<month<<endl;
         }
+        //alimov
     }
 
     cout<<"Location: ";
