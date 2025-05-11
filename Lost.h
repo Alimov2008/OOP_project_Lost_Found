@@ -2,7 +2,6 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <iomanip>
 
 #include "myfunshare.h"
 #include "Item.h"
@@ -71,12 +70,14 @@ class Lost:public Item{
             stringstream ss(temp_line);
             string temp_ID;
             getline(ss, temp_ID,',');
-            if (stoi(temp_ID)==stoi(targetID))
-            {
-                found=true;
-            }
-            else{
-                tempFile<<temp_line<<"\n";
+            try {
+                if (stoi(temp_ID) == stoi(targetID)) {
+                    found = true;}
+                else {
+                    tempFile << temp_line << "\n";}
+            } 
+            catch (const exception& e) {
+                cerr << "Error converting ID: " << e.what() << endl;
             }
             
         }

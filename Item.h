@@ -2,8 +2,6 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <iomanip>
-
 
 #include "myfunshare.h"
 
@@ -25,6 +23,8 @@ protected:
     string location;
     long int contuct_number;
 public:
+    virtual ~Item() {}
+
     Item(){
         ID=0;
         name="Unknown";
