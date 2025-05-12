@@ -79,7 +79,6 @@ class Lost:public Item{
             catch (const exception& e) {
                 cerr << "Error converting ID: " << e.what() << endl;
             }
-            
         }
 
         inputFile.close();

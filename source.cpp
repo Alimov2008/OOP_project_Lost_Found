@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <limits>
 #include <sstream>
 #include <random>
 #include <fstream>
@@ -148,7 +147,7 @@ void info_getter(Item& _item){
     cout<<"Location: ";
     getline(cin, location);
     
-    contuct_number=datatype_checker<long int>("Your Contuct: ");
+    contuct_number=datatype_checker<long int>("Your Contact: ");
 
     _item.setData(ID,name,description,year,month,day,location,contuct_number);
 }

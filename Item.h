@@ -95,7 +95,7 @@ public:
 
     void Find_Item(){
         string SearchName;
-        cout<<"Enter nameof the Item you want to find: ";
+        cout<<"Enter the name of Item you want to find: ";
         getline(cin,SearchName);
 
         ifstream lost_db("lost_database.csv");
