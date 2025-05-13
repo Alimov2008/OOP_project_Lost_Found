@@ -202,6 +202,7 @@ int main()
         case 6:
             cout<<"Choosen option: Fuzzy search item"<<endl;
             i1.Find_Item_Fuzzy();
+            break;
         case 7:
             cout<<"Exiting..."<<endl;
             W=false;
