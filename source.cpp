@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <limits>
 #include <sstream>
 #include <random>
 #include <fstream>
@@ -148,7 +147,7 @@ void info_getter(Item& _item){
     cout<<"Location: ";
     getline(cin, location);
     
-    contuct_number=datatype_checker<long int>("Your Contuct: ");
+    contuct_number=datatype_checker<long int>("Your Contact: ");
 
     _item.setData(ID,name,description,year,month,day,location,contuct_number);
 }
@@ -161,7 +160,7 @@ int main()
     Found f1;
     int option;
     
-   while(W){
+    while(W){
 
         cout<<"\n__________________________________________________"<<endl;
         cout<<"\n==============  Lost & Found  =============="<<endl;
@@ -171,7 +170,8 @@ int main()
         cout<<"3. Lost item list"<<endl;
         cout<<"4. Found item list"<<endl;
         cout<<"5. Find Item"<<endl;
-        cout<<"6. Exit"<<endl;
+        cout<<"6. Fuzzy Search Item"<<endl;
+        cout<<"7. Exit"<<endl;
         cout<<"____________________________________________________"<<endl;
 
         option=datatype_checker<int>("Choose option: ");
@@ -200,11 +200,14 @@ int main()
             i1.Find_Item();
             break;
         case 6:
+            cout<<"Choosen option: Fuzzy search item"<<endl;
+            i1.Find_Item_Fuzzy();
+        case 7:
             cout<<"Exiting..."<<endl;
             W=false;
             break;
         default:
-            cout<<"Invalid user input, Please try again"<<endl; 
+            cout<<"Invalid user input, Please try again"<<endl;
         }
     }
     return 0;
